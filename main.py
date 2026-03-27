@@ -13,6 +13,6 @@ def health() :
         "nama": "Arda",
         "nrp": "5025241074",
         "status": "UP",
-        "timestamp": datetime.utcnow().isoformat(),
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "uptime": f"{uptime:.2f} seconds"
     }
