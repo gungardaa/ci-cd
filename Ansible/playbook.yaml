@@ -1,0 +1,25 @@
+- hosts: vps
+  become: yes
+
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Copy nginx config
+      template:
+        src: templates/nginx.j2
+        dest: /etc/nginx/sites-available/api
+
+    - name: Enable nginx config
+      file:
+        src: /etc/nginx/sites-available/api
+        dest: /etc/nginx/sites-enabled/api
+        state: link
+
+    - name: Restart nginx
+      service:
+        name: nginx
+        state: restarted
